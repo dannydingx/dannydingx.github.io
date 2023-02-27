@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="blogstyle.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@500&family=Oswald:wght@600&family=Tilt+Warp&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <script src="/bloglib.js"></script>
+</head>
+<body>
+    <header><h3 style="font-family: Montserrat, sans-serif; margin-top: 0px;"><a href="/" style="box-shadow: none;">
+        Notes on Coffee, Books, and Programming
+    </a></h3></header>
+
+    <article>
+        <header>
+            <h1>
+                Cats Pics
+            </h1>
+            <p style="margin-bottom:1rem;">Feb 27, 2023</p>
+        </header>
+
+        <section>
+            <h2>Some random pics of cats</h2>
+            <img src="https://hips.hearstapps.com/hmg-prod/images/elegant-british-short-hair-cat-sitting-and-looking-royalty-free-image-859411020-1553192330.jpg?crop=0.650xw:0.651xh;0.153xw,0.349xh&resize=980:*" height="500"></img>
+            <img src="https://images.unsplash.com/photo-1611915387288-fd8d2f5f928b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80" height="500" srcset="">
+
+
+
+            <img src="https://images.unsplash.com/photo-1608848461950-0fe51dfc41cb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80" height="500" srcset="">
+            <img src="https://images.unsplash.com/photo-1577023311546-cdc07a8454d9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80" height="500" srcset="">
+            <img src="https://images.unsplash.com/photo-1581300134629-4c3a06a31948?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80" height="500" srcset="">
+            <img src="https://images.unsplash.com/photo-1597838816882-4435b1977fbe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1449&q=80" height="500" srcset="">
+            <img src="https://images.unsplash.com/photo-1561552352-efbba9d6fc56?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80" height="500" srcset="">
+            <img src="" height="500" srcset="">
+
+            <em style="text-align: right;">src@unsplash.com</em>
+        </section>
+    </article>
+   
+    <article>
+        <section calss="navigation">
+            <a href="\" id="prev_button"><input type="button" value="Prev"></a>
+            <a href="\" id="next_button"><input type="button" value="Next"></a>
+        </section>
+    </article>
+
+    <script type="text/javascript">
+        // Put Name of this blog HERE
+        const blog_name = 'catsblog'
+        const prev_btn = document.getElementById("prev_button");
+        prev_btn.setAttribute('href', get_prev_blog_address(blog_name));
+        const next_btn = document.getElementById("next_button");
+        next_btn.setAttribute('href', get_next_blog_address(blog_name));
+    </script>
+   
+
+    
+<footer>
+    @2024, Built by <a href=".">Danny Ding</a>
+</footer>
+
+    
+</body>
+
+
+</html>
