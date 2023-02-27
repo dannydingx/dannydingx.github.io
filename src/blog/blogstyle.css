@@ -1,0 +1,95 @@
+/* Body styles */
+body {
+    margin: 0;
+    padding: 0;
+  }
+
+
+  * {
+    font-family: 'Mulish', sans-serif;
+  }
+  /* Main styles */
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  a{
+    text-decoration: none;
+    color:black;
+  }
+
+  
+  /* Article */
+  article {
+    text-align: left;
+    border: 20px transparent;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    margin-bottom: 2rem;
+  }
+
+
+  article header h1{
+    color:#3366CC;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 1000;
+    font-size: 50px;
+  }
+
+  header h3{
+    padding-top: 2rem;
+    padding-left: 3rem;
+    text-align:  left;
+    margin-bottom: 0;
+    font-size: 30px;
+  }
+
+  
+  /* Footer */
+  footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #CCCCCC;
+    font-size: 0.8rem;
+    color: #666666;
+  }
+
+  
+  input[type="button"] {
+    background-color: #3366CC; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+
+  input[type="button"]:hover {
+    background-color: #112245; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+
+
+  footer a {
+    color: #3366CC;
+    text-decoration: none;
+  }
+  
+  footer a:hover {
+    text-decoration: underline;
+  }
+  
