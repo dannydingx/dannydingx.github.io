@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="blogstyle.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@500&family=Oswald:wght@600&family=Tilt+Warp&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <script src="/src/bloglib.js"></script>
+</head>
+<body>
+    <header><h3 style="font-family: Montserrat, sans-serif; margin-top: 0px;"><a href=".." style="box-shadow: none;">
+        Notes on Cats, Dogs, and CSing
+    </a></h3></header>
+
+    <article>
+        <header>
+            <h1 id="title">
+                <!--Put Article names here (Or Will do automatically)-->
+            </h1>
+            <p style="margin-bottom:1rem;">Feb 27, 2023</p>
+        </header>
+
+        <section>
+            <!--Put html of the article HERE-->
+            <h1 id="bibliography">Bibliography</h1>
+<p>Yueyang Ding</p>
+<p>Topic: Talking about race and ethnicity in nowadays Japan, we might think about mostly Yamato, but there still exists minorities like Aynu and Ryukyu. My paper tends to focus on ancient Ryukyu Kingdom, currently Okinawa, try to find and trace how much of Ryukyu culture were kept in Okinawa.</p>
+<blockquote>
+<ol type="1">
+<li>Miyagi Taizō, “Embattled Okinawa: Mirror of the Asia-Pacific.” <em>Nippon</em> May 12, 2022</li>
+<li>Xing Xiaojing and Xu keyue, “Exclusive: Not China but US, Japan try to turn Okinawa into ‘battlefield’ again, says Japanese observer who refutes ‘China threat’ theory.” <em>Global Times</em> May 15, 2022</li>
+<li>Mattew M. Burke and Mari Higa, “Young Okinawans are optimistic, but feel weight of US military presence on their island” <em>Stars and Stripes</em> May 12, 2022</li>
+</ol>
+</blockquote>
+<p>Primary Resource:</p>
+<blockquote>
+<p>Week 2-b reading: South Pasadena P.D. and Ione Perkins, “Japan in the Chinese Dynamic History” 1951.</p>
+<p>Week 6-b reading: An account of ancient matters The KOJIKI. Translated by Gustav Heldt</p>
+<p><a href="https://umich.instructure.com/courses/551743/assignments/1756062">Week 11b: Discussion sections: Manifest traces and expedient means</a></p>
+</blockquote>
+</section>
+</article>
+
+<article>
+    <section calss="navigation">
+        <a href="\" id="prev_button"><input type="button" value="Prev"></a>
+        <a href="\" id="next_button"><input type="button" value="Next"></a>
+    </section>
+</article>
+
+<script type="text/javascript">
+    // Put Name of this blog HERE
+        const blog_name = 'Asian_History_Paper_Bibliography'
+        const title = document.getElementById("title");
+        if(title.innerText===''){
+            title.innerText = blog_name.replaceAll('_',' ');
+        }
+        const prev_btn = document.getElementById("prev_button");
+        prev_btn.setAttribute('href', get_prev_blog_address(blog_name));
+        const next_btn = document.getElementById("next_button");
+        next_btn.setAttribute('href', get_next_blog_address(blog_name));
+    </script>
+   
+
+    
+<footer>
+    @2024, Built by <a href=".">Danny Ding</a>
+</footer>
+
+    
+</body>
+
+
+</html>

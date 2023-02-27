@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="blogstyle.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@500&family=Oswald:wght@600&family=Tilt+Warp&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <script src="/src/bloglib.js"></script>
+</head>
+<body>
+    <header><h3 style="font-family: Montserrat, sans-serif; margin-top: 0px;"><a href=".." style="box-shadow: none;">
+        Notes on Cats, Dogs, and CSing
+    </a></h3></header>
+
+    <article>
+        <header>
+            <h1 id="title">
+                <!--Put Article names here (Or Will do automatically)-->
+            </h1>
+            <p style="margin-bottom:1rem;">Feb 27, 2023</p>
+        </header>
+
+        <section>
+            <!--Put html of the article HERE-->
+            <ol type="1">
+<li></li>
+</ol>
+<p>On branch master nothing to commit, working directory clean master</p>
+<ol start="2" type="1">
+<li></li>
+</ol>
+<p>On branch master Changes not staged for commit: (use “git add <file>…” to update what will be committed) (use “git checkout – <file>…” to discard changes in working directory)</p>
+<ol start="3" type="1">
+<li></li>
+</ol>
+<p>On branch master Changes to be committed: (use “git reset HEAD <file>…” to unstage)</p>
+<pre><code>    modified:   Hello.java</code></pre>
+<ol start="4" type="1">
+<li></li>
+</ol>
+<p>On branch master nothing to commit, working directory clean</p>
+<ol start="5" type="1">
+<li></li>
+</ol>
+<p>The first version of Hello.java</p>
+<ol start="6" type="1">
+<li></li>
+</ol>
+<p>The new Hello.java prints our contents related to argv[0]. The original version prints our fixed content.</p>
+</section>
+</article>
+
+<article>
+    <section calss="navigation">
+        <a href="\" id="prev_button"><input type="button" value="Prev"></a>
+        <a href="\" id="next_button"><input type="button" value="Next"></a>
+    </section>
+</article>
+
+<script type="text/javascript">
+    // Put Name of this blog HERE
+        const blog_name = 'CSE15L_Lab4_Readme'
+        const title = document.getElementById("title");
+        if(title.innerText===''){
+            title.innerText = blog_name.replaceAll('_',' ');
+        }
+        const prev_btn = document.getElementById("prev_button");
+        prev_btn.setAttribute('href', get_prev_blog_address(blog_name));
+        const next_btn = document.getElementById("next_button");
+        next_btn.setAttribute('href', get_next_blog_address(blog_name));
+    </script>
+   
+
+    
+<footer>
+    @2024, Built by <a href=".">Danny Ding</a>
+</footer>
+
+    
+</body>
+
+
+</html>

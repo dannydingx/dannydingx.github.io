@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="blogstyle.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@500&family=Oswald:wght@600&family=Tilt+Warp&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <script src="/src/bloglib.js"></script>
+</head>
+<body>
+    <header><h3 style="font-family: Montserrat, sans-serif; margin-top: 0px;"><a href=".." style="box-shadow: none;">
+        Notes on Cats, Dogs, and CSing
+    </a></h3></header>
+
+    <article>
+        <header>
+            <h1 id="title">
+                <!--Put Article names here (Or Will do automatically)-->
+            </h1>
+            <p style="margin-bottom:1rem;">Feb 27, 2023</p>
+        </header>
+
+        <section>
+            <!--Put html of the article HERE-->
+            <h1 id="eecs445-project1---writeup">EECS445 Project1 - Writeup</h1>
+<p>Danny Ding</p>
+<h3 id="dataset-considerations">2 - Dataset Considerations</h3>
+<ol type="1">
+<li><p>(9 pts) Answer the following questions about the dataset we provided. If you make any assumptions about the source of the data, please state them in your answer.</p>
+<ol type="1">
+<li><p>Is it possible to identify individuals (i.e., one or more natural persons), either directly or indirectly (i.e., in combination with other data) from the dataset?<br />
+It would be very hard to do so since all names in the dataset were removed and all data were recorded in random order so it wouldn’t be possible to find a connection between data.</p></li>
+<li><p>What tasks could the dataset be used for?</p>
+<p>Could be used to predict emotion from an original text.</p></li>
+<li><p>Are there tasks for which the dataset should not be used? It might not be able to predict the emotion of texts from the “Created-utc” timestamp since it didn’t make much sense regarding the correlation between emotion and the time when that text was posted. This task was also undoable for humans.</p></li>
+</ol></li>
+<li><p>(2 pts) Supervised learning, as we have seen, requires a labeled training dataset. One way to obtain labels is through crowdsourcing: effectively having human beings provide labels for each data point. This could lead to errors in the training data itself; in fact, recent work has demonstrated that many commonly used datasets suffer from this issue. Answer the following questions.</p>
+<ol type="1">
+<li><p>What is one potential source of inaccuracy in the labels in these datasets?</p>
+<p>The emotion was labeled by humans, and some comment texts are hard to distinguish emotions. For example, one sarcastic comment might seem grateful at first look but indeed reflects sadness.</p></li>
+<li><p>How could inaccurate labels harm our ability to construct an effective model?</p>
+<p>Inaccurate labels might create outliers which could affect our SVM model in the wrong direction if that label happens to be a support vector. Those data were not reflecting authentical classification features so will affect our model’s generalizability when predicting real-life data.</p></li>
+</ol></li>
+</ol>
+<h3 id="section"></h3>
+<h3 id="feature-extraction">3 - Feature Extraction</h3>
+<ol type="1">
+<li><p>​ <strong>[‘it’, ‘s’, ‘a’, ‘test’, ‘sentence’, ‘does’, ‘it’, ‘look’, ‘correct’]</strong></p></li>
+<li><p>​ <strong>4855</strong></p></li>
+<li><p>​ Avg number of nonzero features: <strong>12.241140215716486</strong></p>
+<p>​ The word appearing in the greatest number of comments: <strong>i</strong></p></li>
+</ol>
+<h3 id="hyperparameter-and-model-selection">4 - Hyperparameter and Model Selection</h3>
+<h4 id="section-1">4.1</h4>
+<ol type="1">
+<li><p>So that our model could learn on a balanced dataset and would learn all kinds of features evenly so that it will be more generalizable.</p></li>
+<li><table>
+<thead>
+<tr class="header">
+<th>Performance Measures</th>
+<th>C</th>
+<th>CV Performance</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Accuracy</td>
+<td>1</td>
+<td>0.9214184081814139</td>
+</tr>
+<tr class="even">
+<td>f1-score</td>
+<td>1</td>
+<td>0.920263856119252</td>
+</tr>
+<tr class="odd">
+<td>AUROC</td>
+<td>0.1</td>
+<td>0.973744122821046</td>
+</tr>
+<tr class="even">
+<td>Precision</td>
+<td>0.01</td>
+<td>0.998</td>
+</tr>
+<tr class="odd">
+<td>Sensitivity</td>
+<td>1</td>
+<td>0.9067716067716068</td>
+</tr>
+<tr class="even">
+<td>Specificity</td>
+<td>0.01</td>
+<td>0.9984615384615385</td>
+</tr>
+</tbody>
+</table>
+<p>Large C made it harder to violate some restrictions when fitting a model, and small C made it easier. So C values could make the model’s prediction more generalizable especially when the data were not linearly separable. If it is for me, I would like to choose to optimize C to 1 since we had 3 metrics at their maximum level when C was set to 1, and that seems to be a good value for the hyperparameter. I would pick f1-score to be my metrics since it is comprehensive that it were calculated from many other metrics.</p></li>
+<li><table>
+<thead>
+<tr class="header">
+<th>Performance Measures</th>
+<th>CV Performance</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Accuracy</td>
+<td>0.9198767334360555</td>
+</tr>
+<tr class="even">
+<td>f1-score</td>
+<td>0.9204892966360856</td>
+</tr>
+<tr class="odd">
+<td>AUROC</td>
+<td>0.9734686609686609</td>
+</tr>
+<tr class="even">
+<td>Precision</td>
+<td>0.9148936170212766</td>
+</tr>
+<tr class="odd">
+<td>Sensitivity</td>
+<td>0.9261538461538461</td>
+</tr>
+<tr class="even">
+<td>Specificity</td>
+<td>0.9135802469135802</td>
+</tr>
+</tbody>
+</table></li>
+<li><figure>
+<img src="D:\0.Danny\2.99%20-%20UMich\2023A%20-%20Winter\EECS%20445\Project\Project%201\p1_starter_code\Norm-l2_penalty.png" alt="" /><figcaption>Norm-l2_penalty</figcaption>
+</figure></li>
+<li><p>Most POSITIVE 5 words:</p></li>
+</ol>
+<blockquote>
+<p>coeff: 2.006393 word: thanks</p>
+<p>coeff: 1.846348 word: thank</p>
+<p>coeff: 1.441752 word: welcome</p>
+<p>coeff: 1.161609 word: glad</p>
+<p>coeff: 1.029449 word: congrats</p>
+</blockquote>
+<p>Most NEGATIVE 5 words:</p>
+<blockquote>
+<p>coeff: -0.468676 word: sad coeff: -0.345201 word: disappointing coeff: -0.335861 word: miss coeff: -0.325155 word: missed coeff: -0.313189 word: sorry</p>
+</blockquote>
+<ol start="6" type="1">
+<li>Thanks god, glad I am still alive, congrats to myself still working on the EECS project the day before the due.</li>
+</ol>
+<h4 id="section-2">4.2</h4>
+<ol type="1">
+<li><p>C-value: <strong>0.1</strong> Mean CV-AUROC Score: <strong>0.9678026490141874</strong> Score on Test Case: <strong>0.9731125356125355</strong></p></li>
+<li><figure>
+<img src="D:\0.Danny\2.99%20-%20UMich\2023A%20-%20Winter\EECS%20445\Project\Project%201\p1_starter_code\Norm-l1_penalty.png" alt="" /><figcaption>Norm-l1_penalty</figcaption>
+</figure></li>
+<li><p>The norm of theta generated from l1 penalty is smaller than that from l2 penalty this is due to L1 penalty tend to leads to sparse model since it encourages the absolute value of _i to go to 0.</p>
+<p>Also we can see that as C grows, the Norm of theta changes differently for L1 and L2 norms.</p></li>
+<li><p>Square Loss will give more penalty to outliers misclassified data very far from the decision boundary with very negative <br /><span class="math display">$$
+y^{(i)}(\overline{\theta}\cdot\overline{x}^{(i)} + b)
+$$</span><br /> value. Such that using square hinge loss will treat those far outliers more seriously and gave a more compromised decision boundary.</p></li>
+</ol>
+<h4 id="section-3">4.3</h4>
+<table>
+<thead>
+<tr class="header">
+<th>1.</th>
+<th>Tuning Scheme</th>
+<th>C</th>
+<th>r</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Grid Search</td>
+<td>1</td>
+<td>100</td>
+<td>0.976997</td>
+</tr>
+<tr class="even">
+<td>Random Search</td>
+<td>20.63796606099088</td>
+<td>6.872853080796028</td>
+<td>0.978359</td>
+</tr>
+</tbody>
+</table>
+<ol start="2" type="1">
+<li><p>The C and r from Both schemes don’t vary much from each other from the exponential level. They are all in the (1-100) range and gave similar performances on the test dataset. Both strategies can be used to find hyperparameters, with some pro and cons:</p>
+<ol type="1">
+<li>Grid Search: Promised to cover standard combination with the strictly exponentially uniformly distributed choice of hyperparameter. But somehow take more times.</li>
+<li>Exponentially Uniform distributed Random Search: An approximate uniform distribution. It might find better results than the grid search since it covers all values, not just exponents of 10. But also might be uneven if the randomization isn’t lucky that some good combinations of parameters were not approached by the random number generator.</li>
+</ol></li>
+</ol>
+<h4 id="section-4">4.4</h4>
+<ol type="1">
+<li><p><br /><span class="math display">$$
+\phi(\bar{u})=[u_1^2 , u_2^2,\dots , u_n^2, \sqrt{2}u_1u_2\dots u_n, r, \sqrt{2r}u_1, \sqrt{2r}u_2,\dots\sqrt{2r}u_n] \\
+\phi(\bar{u}) \cdot  \phi(\bar{v}) = u_1^2 v_1^2 + u_2^2 v_2^2 + \dots + u_n^2v_n^2  + 2u_1v_1u_2v_2\dots u_nv_n + r^2 + 2ru_1v_1 + 2ru_2v_2 \dots + 2ru_nv_n  = (\bar{u} \cdot \bar{v} + r)^2 = K(\bar{u},\bar{v})
+$$</span><br /></p></li>
+<li><p>There will be more calculation and memory usage if we do feature mapping explicitly. On the other hand, not all feature maps can be represented by some kernels, so feature maps explicitly can be more adaptive. But usually, kernel trick is always an efficient technique to use.</p></li>
+</ol>
+<h3 id="asymmetric-cost-functions-and-class-imbalance">5 - Asymmetric Cost Functions and Class Imbalance</h3>
+<h4 id="section-5">5.1</h4>
+<ol type="1">
+<li><p>This modification allows our model to have different penalty weights when misclassifying False Positive and False Negative data. If W_n is much greater than W_p, our model will feel freer when misclassifying positive data (more False Negative) due to less penalty coefficient, but will be less lenient for misclassifying negative (less False Positive).</p></li>
+<li><p>The difference will be the same as multiplying C by 4, reflected in the SVM formula. In our previous work, we showed that a larger C results in a “harder” margin.</p></li>
+<li><table>
+<thead>
+<tr class="header">
+<th>Performance Measure</th>
+<th>Performance</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Accuracy</td>
+<td>0.6178736517719569</td>
+</tr>
+<tr class="even">
+<td>f1-score</td>
+<td>0.7222844344904815</td>
+</tr>
+<tr class="odd">
+<td>AUROC</td>
+<td>0.962789648622982</td>
+</tr>
+<tr class="even">
+<td>Precision</td>
+<td>0.5677816901408451</td>
+</tr>
+<tr class="odd">
+<td>Sensitivity</td>
+<td>0.9923076923076923</td>
+</tr>
+<tr class="even">
+<td>Specificity</td>
+<td>0.24228395061728394</td>
+</tr>
+</tbody>
+</table></li>
+<li><p>Specificity is affected most. Note that Specificity is calculated by: <br /><span class="math display">$$
+\frac{TN}{TN+FP}
+$$</span><br /> and the class weight here increased the False Positive by letting the penalty of False Negative 10 times greater.</p></li>
+</ol>
+<h4 id="section-6">5.2</h4>
+<table>
+<thead>
+<tr class="header">
+<th>1.</th>
+<th>Class Weight</th>
+<th>Performance Measures</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Wn = 1,Wp = 1</td>
+<td>Accuracy</td>
+<td>0.8007380073800738</td>
+</tr>
+<tr class="even">
+<td>Wn = 1,Wp = 1</td>
+<td>f1-score</td>
+<td>0.8891928864569083</td>
+</tr>
+<tr class="odd">
+<td>Wn = 1,Wp = 1</td>
+<td>AUROC</td>
+<td>0.9511467673430862</td>
+</tr>
+<tr class="even">
+<td>Wn = 1,Wp = 1</td>
+<td>Precision</td>
+<td>0.8004926108374384</td>
+</tr>
+<tr class="odd">
+<td>Wn = 1,Wp = 1</td>
+<td>Sensitivity</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<td>Wn = 1,Wp = 1</td>
+<td>Specificity</td>
+<td>0.006134969325153374</td>
+</tr>
+</tbody>
+</table>
+<ol start="2" type="1">
+<li><p>Specificity is affected most and Auroc is affected least. Since we put both Weights to 1, the model here is not very different from what we made in part 4, but the difference is that our dataset was not balanced, and there are more positive data points in the dataset. Such that the slack for positive data points weighted more in the optimization problem in this example. Specificity measured how the model performed on negatively labeled data points, and here we see that it did badly since it paid more attention to positive labeled ones.</p></li>
+<li><p>Somehow yes. F-1 Score depends on precision and sensitivity and gives a compromised average of those two values. It is intuitively understandable that sensitivity is perfect here since sensitivity measures the model’s performance on positively labeled data points which is dominant in this unbalanced dataset. But the precision wasn’t perfect since there are some amount of False Positive here due to more positive data. F-1 score so gives a moderate measure of this model’s performance.</p></li>
+</ol>
+<h4 id="section-7">5.3</h4>
+<ol type="1">
+<li><p>In this case, I would choose to use metrics ‘accuracy’ as it reflects an evaluation of the model performance that considered all four kinds of label prediction status, which is more comprehensive under this condition of an unbalanced database. To choose weight parameters, I did a grid search by 2’s exponential [1, 2, 4, 8, 16, 32] such that the multiples relationship between data of different label could be embodied. Note that in this example, I fixed C=0.01 during grid search while different combinations of Weight could have an effect similar to “vary c a little bit.” (e.g. (1,2)and(2,4)) eventually, I find the parameter (16,8) to be the best.</p></li>
+<li><table>
+<thead>
+<tr class="header">
+<th>Class Weight</th>
+<th>Performance Measures</th>
+<th>Performance</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Wn = 16,Wp = 8</td>
+<td>Accuracy</td>
+<td>0.8733087330873309</td>
+</tr>
+<tr class="even">
+<td>Wn = 16,Wp = 8</td>
+<td>f1-score</td>
+<td>0.9146644573322287</td>
+</tr>
+<tr class="odd">
+<td>Wn = 16,Wp = 8</td>
+<td>AUROC</td>
+<td>0.9471071260028314</td>
+</tr>
+<tr class="even">
+<td>Wn = 16,Wp = 8</td>
+<td>Precision</td>
+<td>0.9910233393177738</td>
+</tr>
+<tr class="odd">
+<td>Wn = 16,Wp = 8</td>
+<td>Sensitivity</td>
+<td>0.8492307692307692</td>
+</tr>
+<tr class="even">
+<td>Wn = 16,Wp = 8</td>
+<td>Specificity</td>
+<td>0.9693251533742331</td>
+</tr>
+</tbody>
+</table></li>
+<li><figure>
+<img src="C:\Users\MI\AppData\Roaming\Typora\typora-user-images\image-20230204194537008.png" alt="" /><figcaption>image-20230204194537008</figcaption>
+</figure></li>
+</ol>
+<h3 id="challenge">6 - Challenge</h3>
+<h4 id="feature-engineering">Feature Engineering</h4>
+<p>I read the appendix C and adopted the TF-IDF score - which takes the occurrence of words in text into consideration such that would give a more dependable feature than simply one-hot encoding. To implement it I used the tfdif fitter from sklearn: <code>sklearn.feature_extraction.text.TfidfVectorizer</code></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>tfdif_model <span class="op">=</span> sklearn.feature_extraction.text.TfidfVectorizer()</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>feature_matrix <span class="op">=</span> (tfdif_model.fit_transform(df.text).toarray())</span></code></pre></div>
+<p>For Kernel, hyperparameter, and model selection. My first thought is to use a linear kernel and one-vs-all(one-vs-rest) model. Since linear did well in the previous classification in this project I thought there isn’t much meaning to use quadratic given that numbers in the dataset are all “normalized” through tf-idf. Also, I read some documents about one-vs-one and one-vs-rest, they are all multiclass classifiers based on multiple basic classifiers. In our example, while there are only 3 labels (classes), both one-vs-one and one-vs-rest will use 3 models. This is not the case when there are many labels, in such case we need to create NC2 one-vs-one model. Therefore, since we will use same amount of models here, I’d rather pick one-vs-rest which all data than one-vs-one which just use 2/3 of the data for each model. The issue with it is that data are imbalanced.</p>
+<p>Before I tried out the model, I did a pilot using <code>sklearn.model_selection.GridSearchCV</code> to check my guessing about the model. I tried different combinations of parameters:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>param_grid <span class="op">=</span> [</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>  {<span class="st">&#39;C&#39;</span>: [<span class="fl">0.01</span>,<span class="fl">0.1</span>,<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">100</span>, <span class="dv">1000</span>],  <span class="st">&#39;kernel&#39;</span>: [<span class="st">&#39;linear&#39;</span>,<span class="st">&#39;rbf&#39;</span>], <span class="st">&#39;decision_function_shape&#39;</span>:[<span class="st">&#39;ovr&#39;</span>], <span class="st">&#39;break_ties&#39;</span>:[<span class="st">&#39;True&#39;</span>]},</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>    {<span class="st">&#39;C&#39;</span>: [<span class="fl">0.01</span>,<span class="fl">0.1</span>,<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">100</span>, <span class="dv">1000</span>], <span class="st">&#39;kernel&#39;</span>: [<span class="st">&#39;linear&#39;</span>,<span class="st">&#39;rbf&#39;</span>], <span class="st">&#39;decision_function_shape&#39;</span>:[<span class="st">&#39;ovo&#39;</span>]}</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>]</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>clf <span class="op">=</span> sklearn.svm.SVC()</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>gc_clf <span class="op">=</span> sklearn.model_selection.GridSearchCV(clf,param_grid,cv<span class="op">=</span><span class="dv">5</span>,verbose<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>gc_clf.fit(X_train,Y_train)</span></code></pre></div>
+<p>And I found some good results using rbf kernel and ovr decision function. Afterwards, I wrote the accuracy metrics for this three label cases and altered the <code>cv_performance()</code> a little bit to find the value c for LinearSVC and I found that to perform even better than rbf kernel.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">def</span> cv_performance_mult(clf, X, y, k<span class="op">=</span><span class="dv">5</span>, metric<span class="op">=</span><span class="st">&quot;accuracy&quot;</span>):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>    skf <span class="op">=</span> sklearn.model_selection.StratifiedKFold(n_splits<span class="op">=</span>k)<span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>    <span class="co"># Put the performance of the model on each fold in the scores array</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>    scores <span class="op">=</span> []</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>    <span class="cf">for</span> train_i,test_i <span class="kw">in</span> skf.split(X,y):</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>        X_s_train, X_s_test <span class="op">=</span> X[train_i], X[test_i]</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a>        y_s_train, y_s_test <span class="op">=</span> y[train_i], y[test_i]</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a>        clf.fit(X_s_train, y_s_train)<span class="op">;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a>     </span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a>        y_test_predict <span class="op">=</span> clf.predict(X_s_test)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a>        cfs_mtx <span class="op">=</span> sklearn.metrics.confusion_matrix(y_s_test, y_test_predict)<span class="op">;</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a>        accuracy <span class="op">=</span> (cfs_mtx[<span class="dv">0</span>][<span class="dv">0</span>] <span class="op">+</span> cfs_mtx[<span class="dv">1</span>][<span class="dv">1</span>] <span class="op">+</span> cfs_mtx[<span class="dv">2</span>][<span class="dv">2</span>]) <span class="op">/</span> y_test_predict.size <span class="co">#Is the accuracy score that we will be tested on</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a>        scores.append(accuracy)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true"></a>    <span class="cf">return</span> np.array(scores).mean()</span></code></pre></div>
+<p>After several tries, I found my model worked pretty well when doing l1-penalty with a cv-performance score of <em>.72</em> and therefore, I realized that l1-penalty would lead to sparse theta parameter and that since many not useful weight were set to 0, I could use that to remove such feature and further improve my dataset. (<em>This is described as “Using only a subset of the raw features” from the document under “Try different Feature Engineering method”</em>)</p>
+<p>The way I implemented it is by fitting an l1-penalty model that I’ve gained through <code>select_param()</code> first and extracting it’s three theta vectors, and I extract all columns index for which any of those three vectors were not zero. Then I create a smaller feature matrix. At the end of the day, I decreased the number of features from 4661 to 803, which would certainly lead to improvement in model performance.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>clf_l1 <span class="op">=</span> sklearn.svm.LinearSVC(C<span class="op">=</span><span class="dv">1</span>, penalty<span class="op">=</span><span class="st">&quot;l1&quot;</span>, dual<span class="op">=</span><span class="va">False</span>, loss<span class="op">=</span><span class="st">&quot;squared_hinge&quot;</span>,  multi_class<span class="op">=</span><span class="st">&quot;ovr&quot;</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>clf_l1.fit(X_train,Y_train)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>idx_useful <span class="op">=</span> np.logical_or(np.logical_or(clf_l1.coef_[<span class="dv">0</span>]<span class="op">&gt;</span><span class="dv">0</span>, clf_l1.coef_[<span class="dv">1</span>]<span class="op">&gt;</span><span class="dv">0</span>),clf_l1.coef_[<span class="dv">2</span>]<span class="op">&gt;</span><span class="dv">0</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a>X_Useful <span class="op">=</span> X_train[:,idx_useful]</span></code></pre></div>
+<p>Also, I needs to store this <code>idx_useful</code> since I would still need it for prediction.</p>
+<p>After this process, I run the GridCV again but on the new smaller feature matrix. This time I reached the accuracy <strong>0.8</strong> at:</p>
+<blockquote>
+<p>{‘C’: 10, ‘break_ties’: ‘True’, ‘decision_function_shape’: ‘ovr’, ‘kernel’: ‘linear’}</p>
+</blockquote>
+<p>I could also use <code>LinearSVC</code> to implement this, I can run my own <code>select_param_mult()</code> method:</p>
+<blockquote>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="kw">def</span> select_param_linear_mult(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a>    X, y, k<span class="op">=</span><span class="dv">5</span>, metric<span class="op">=</span><span class="st">&quot;accuracy&quot;</span>, C_range<span class="op">=</span>[], loss<span class="op">=</span><span class="st">&quot;hinge&quot;</span>, penalty<span class="op">=</span><span class="st">&quot;l2&quot;</span>, dual<span class="op">=</span><span class="va">True</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a>):</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a>    best_performance <span class="op">=</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a>    best_performance_c <span class="op">=</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a>    <span class="cf">for</span> c <span class="kw">in</span> C_range:</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a>        <span class="bu">print</span>(<span class="st">&quot;Checking Param: C=</span><span class="sc">%f</span><span class="st">&quot;</span> <span class="op">%</span> (c))</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a>        oto_clf <span class="op">=</span> sklearn.svm.SVC(kernel<span class="op">=</span><span class="st">&quot;linear&quot;</span>, C<span class="op">=</span>c,  decision_function_shape<span class="op">=</span><span class="st">&quot;ovo&quot;</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a>        curr_performance <span class="op">=</span> cv_performance_mult(oto_clf,X,y,k,metric)<span class="op">;</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true"></a>        <span class="cf">if</span> curr_performance <span class="op">&gt;</span> best_performance:</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true"></a>            <span class="bu">print</span>(<span class="st">&quot;Better Performance Found: </span><span class="sc">%f</span><span class="st">&quot;</span> <span class="op">%</span> curr_performance)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true"></a>            best_performance <span class="op">=</span> curr_performance<span class="op">;</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true"></a>            best_performance_c <span class="op">=</span> c<span class="op">;</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true"></a>    <span class="bu">print</span>(<span class="st">&quot;ONETOONE:&quot;</span>)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true"></a>    <span class="bu">print</span>(best_performance)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true"></a>    <span class="bu">print</span>(best_performance_c)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true"></a>    <span class="cf">for</span> c <span class="kw">in</span> C_range:</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true"></a>        <span class="bu">print</span>(<span class="st">&quot;Checking Param: C=</span><span class="sc">%f</span><span class="st">&quot;</span> <span class="op">%</span> (c))</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true"></a>        otr_clf <span class="op">=</span> sklearn.svm.LinearSVC(penalty<span class="op">=</span>penalty, C<span class="op">=</span>c, loss<span class="op">=</span>loss, dual<span class="op">=</span>dual, multi_class<span class="op">=</span><span class="st">&quot;ovr&quot;</span>)</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true"></a>        curr_performance <span class="op">=</span> cv_performance_mult(otr_clf,X,y,k,metric)<span class="op">;</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true"></a>        <span class="cf">if</span> curr_performance <span class="op">&gt;</span> best_performance:</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true"></a>            <span class="bu">print</span>(<span class="st">&quot;Better Performance Found: </span><span class="sc">%f</span><span class="st">&quot;</span> <span class="op">%</span> curr_performance)</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true"></a>            best_performance <span class="op">=</span> curr_performance<span class="op">;</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true"></a>            best_performance_c <span class="op">=</span> c<span class="op">;</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true"></a>    <span class="bu">print</span>(<span class="st">&quot;ONETOREST:&quot;</span>)</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true"></a>    <span class="bu">print</span>(best_performance)</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true"></a>    <span class="bu">print</span>(best_performance_c)</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true"></a>    <span class="cf">return</span> best_performance_c</span></code></pre></div>
+</blockquote>
+<p>Then I runned:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a>select_param_linear_mult(X_Useful,Y_train,C_range<span class="op">=</span>[<span class="fl">0.01</span>,<span class="fl">0.1</span>,<span class="dv">1</span>,<span class="dv">10</span>,<span class="dv">100</span>,<span class="dv">1000</span>],loss<span class="op">=</span><span class="st">&#39;hinge&#39;</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a>select_param_linear_mult(X_Useful,Y_train,C_range<span class="op">=</span>[<span class="fl">0.01</span>,<span class="fl">0.1</span>,<span class="dv">1</span>,<span class="dv">10</span>,<span class="dv">100</span>,<span class="dv">1000</span>],loss<span class="op">=</span><span class="st">&#39;squared_hinge&#39;</span>)</span></code></pre></div>
+<p>The best param I gained from this is <em>loss = ‘squared_hinge’; C = 10</em> Moreover I did something interesting, I tried to figure out better C through more accurate tries. <code>select_param_linear_mult_a(X_Useful,Y_train,C_range=np.arange(1,11,0.5),loss='squared_hinge')</code> Eventually I finalized my model as <code>clf = sklearn.svm.LinearSVC(C=6.5, loss='squared_hinge', multi_class="ovr")</code> Which have a cv-performance score of <strong>0.811555555555</strong></p>
+<p>Although this score wasn’t as great as in binary classification, but I believe that was pretty much decent intuitively since the problem is much harder when we added a “neutral” case into consideration, which means the classification criterion on both sides becomes harder. Sometimes it is even hard for me to classify between “neutral” and “gratitude” or “sadness”.</p>
+<p><img src="C:\Users\MI\AppData\Roaming\Typora\typora-user-images\image-20230206133457060.png" title="Some example of classification problem using my classifier" alt="Some" />(Some example of classification problem using my classifier)</p>
+<p>*Note: some of my testing and trying code were in jupyter notebook. I only included a neat version of the final realization of model and prediction in the project1.py. This write-up described all my tries to approach this challenge.</p>
+</section>
+</article>
+
+<article>
+    <section calss="navigation">
+        <a href="\" id="prev_button"><input type="button" value="Prev"></a>
+        <a href="\" id="next_button"><input type="button" value="Next"></a>
+    </section>
+</article>
+
+<script type="text/javascript">
+    // Put Name of this blog HERE
+        const blog_name = 'EECS445_Write_Up'
+        const title = document.getElementById("title");
+        if(title.innerText===''){
+            title.innerText = blog_name.replaceAll('_',' ');
+        }
+        const prev_btn = document.getElementById("prev_button");
+        prev_btn.setAttribute('href', get_prev_blog_address(blog_name));
+        const next_btn = document.getElementById("next_button");
+        next_btn.setAttribute('href', get_next_blog_address(blog_name));
+    </script>
+   
+
+    
+<footer>
+    @2024, Built by <a href=".">Danny Ding</a>
+</footer>
+
+    
+</body>
+
+
+</html>

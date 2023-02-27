@@ -1,0 +1,21 @@
+        const title = document.getElementById("title");
+        if(title.innerText===''){
+            title.innerText = blog_name.replaceAll('_',' ');
+        }
+        const prev_btn = document.getElementById("prev_button");
+        prev_btn.setAttribute('href', get_prev_blog_address(blog_name));
+        const next_btn = document.getElementById("next_button");
+        next_btn.setAttribute('href', get_next_blog_address(blog_name));
+    </script>
+   
+
+    
+<footer>
+    @2024, Built by <a href=".">Danny Ding</a>
+</footer>
+
+    
+</body>
+
+
+</html>

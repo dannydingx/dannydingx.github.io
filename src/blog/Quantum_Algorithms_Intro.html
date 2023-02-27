@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="blogstyle.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@500&family=Oswald:wght@600&family=Tilt+Warp&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <script src="/src/bloglib.js"></script>
+</head>
+<body>
+    <header><h3 style="font-family: Montserrat, sans-serif; margin-top: 0px;"><a href=".." style="box-shadow: none;">
+        Notes on Cats, Dogs, and CSing
+    </a></h3></header>
+
+    <article>
+        <header>
+            <h1 id="title">
+                <!--Put Article names here (Or Will do automatically)-->
+            </h1>
+            <p style="margin-bottom:1rem;">Feb 27, 2023</p>
+        </header>
+
+        <section>
+            <!--Put html of the article HERE-->
+            <p>Danny Ding / Summer@Brown / The Quantum Revolution in Technology / Final Project / David Tersegno</p>
+<p>2019.0801.4</p>
+<h1 id="quantum-algorithms">Quantum Algorithms</h1>
+<p>Since the concept of Turing machine was proposed at 1936, human beings haven’t stop finding ways to utilize ‘natural phenomena’ into our logic, to ‘help us’ by the hand of god. At 1965, the CEO of Intel described a principle in his paper that the components of per integrated circuit will double by every 18 months in near decades, this principle was later called the <em>Moore’s Law</em>, and it seems to keep effectiveness until now. (ref 1/2)</p>
+<figure>
+<img src="https://upload.wikimedia.org/wikipedia/commons/8/8b/Moore%27s_Law_Transistor_Count_1971-2018.png" alt="" /><figcaption>img</figcaption>
+</figure>
+<p>Nevertheless, our technology now is really approximating the physical limit of accuracy: we are now arranging transistors in a <strong>nm level</strong>! Proud of being born at the great time, we are experiencing the unprecedented revolution of science and technology in the past century, and it will only became more intense in the future. Now, scientists are considering using a new natural power - Power of Quantum - to built these sorts of ‘Logical machine’. Just as how we use the power of electricity, we considered ‘Quantum Effect’ as a natural resource, a resource of computing, we are trying to model and capture subtle quantum effects, and map them into macro event that could help us. Quantum computing have a strong parallel computing ability due to its characteristics of superposition, but that didn’t mean we could directly run programs on our classical computer directly on ‘Quantum Computers’ and enjoy its advantages of parallel (enjoy an exponentially efficiency promotion). Actually, to manipulate quantum could be tough, and we could not use our classical algorithms to manipulate them parallelly, on the contrary, scientists developed certain specific operation approaches: Quantum Algorithms.</p>
+<h3 id="quantum-bits">Quantum Bits</h3>
+<p>Just like <em>bits</em> as the computing unit of classical computers, quantum computers have <em>Quantum Bits</em> or <strong>Qubits</strong>. While classical bits have two states: 0 or 1, always indicated by low / high voltage, Quantum Bits also have two stages: ∣0⟩ or∣1⟩, different from the classical one, stages of qubits were indicated by some quantum characteristics: like the charge of electrons, direction of spin on electron or photons. Moreover, qubits began to differ from classic bits on its quantum characteristics - its ability to <strong>interfere</strong> or <strong>superposition</strong>. A qubit could appear at superposition of two stages, with one coefficient of probability of each stages:</p>
+<p><br /><span class="math display"><em>a</em>|0⟩ + <em>b</em>|1⟩</span><br /></p>
+<p>Whereas</p>
+<p><br /><span class="math display">|<em>a</em>|<sup>2</sup>, |<em>b</em>|<sup>2</sup></span><br /> reflects the probability of observing the states 0 or states 1 respectively if we observe this superpositioned qubit immediately. If that’s the case, we then could imply the situation of 2 qubit:</p>
+<figure>
+<img src="C:\Users\Danny\AppData\Roaming\Typora\typora-user-images\1564700855450.png" alt="" /><figcaption>1564700855450</figcaption>
+</figure>
+<p>So, we knew there are four stages in total: $$ { a{<em>{1}} a{</em>{2}} | 00 , a{<em>{1}} b{</em>{2}} | 01 ,</p>
+<p>b{<em>{1}} a{</em>{2}} | 10 , b{<em>{1}} b{</em>{2}} | 11 } $$</p>
+<p>All these stages could be compute together, so, using <strong>n</strong> bits as computing resources, while classical computer could only compute <strong>n</strong> of binary numbers at once, qubits allowed us to compute <strong>2^n</strong> of binary numbers. HOWEVER, this kind of cool computing resource also have a limit that made it unable to function using classical algorithms: when we finally ‘observe’ it in the end, our observing will collapse the wave function, at this time the GOD would roll a dice, and ruthlessly shrink our probability distribution, no matter how big it is, into a single stage, and will not change after that.</p>
+<p>Thus, in most quantum algorithms, we would put all qubits in their superposition stage in the intermediate process, and only to observe the result at the end.</p>
+<p>(ref 3)</p>
+<p>Now, its time to introduce some famous quantum algorithms</p>
+<h3 id="grover-algorithm">Grover Algorithm</h3>
+<p>Grover Algorithm is one quantum - searching algorithms designed for ‘searching’ un-sorted data. I’ll not discuss the mathematic details about algorithms here, but we’ll discuss some general issue about them.</p>
+<p>First, for common sorted data, searching is very efficient using the <strong>Binary Search Algorithm</strong>, which have the complexity of <em>O(log n)</em> (meaning <em>log n</em> of computation is expected for running searching in n data). For unsorted dataset, conventional algorithms (if we have to call it ‘algorithm’) is a little time-consuming, it is just simply iterate through the whole dataset, have the complexity of <em>O(N)</em>. For the <strong>Grover Algorithm</strong> here, this quantum algorithm ‘shockingly’ reduced the complexity to <em>O(N^(1/2))</em>, amazing.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Algorithm</th>
+<th>Datatype</th>
+<th>Complexity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Binary Search</td>
+<td>Sorted</td>
+<td><em>O</em>(log N)</td>
+</tr>
+<tr class="even">
+<td>Iteration Data</td>
+<td>Unsorted</td>
+<td><em>O</em>(N)</td>
+</tr>
+<tr class="odd">
+<td>Grover</td>
+<td>Unsorted</td>
+<td><em>O</em>(√N)</td>
+</tr>
+</tbody>
+</table>
+<p>The general principle of Grover algorithm is similar as what we talked before of the qubit’s characteristics. We have <strong>n</strong> qubits to use at the beginning, and each qubit could be at either ∣0⟩ or ∣1⟩ stage, we turn qubit into superposition state through <strong>Hadamard gate</strong>, and then we could mapped out 2^n kinds of different stage (numbers) and let them compute as a whole, eventually we would increase the probability coefficient for the stages of our results to a very high number, so that we could ‘observed’ the value of qubits and hopefully get the correct result we want.</p>
+<p>(ref 4,5)</p>
+<h3 id="shors-algorithm">Shor’s Algorithm</h3>
+<p>Shor’s algorithm was designed for (big) integer factoring. When discuss about integer factoring, we must talk about the RSA encryption, which is one of the most widely adopted encryption method for the internet safety. That was an asymmetric encryption approach, which means that it have one public key to encrypt and another private key to decipher. And this whole method’s safety was based on a simply assumption: that it would be very hard for a computer (or even a group of them) to factor a large integer. Basically, the public key of RSA is the product of two <strong>coprime</strong> large numbers (private key). By this mean, it would be easy to generate a public key through private key, but nearly not possible to do the reverse. However, Shor’s algorithms might put threat to the whole RSA encryption. (ref 6)</p>
+<figure>
+<img src="D:\0.Danny\2019.07%20-%202019Summer\2019.05%20-%20Summer@Brown\HomeworkB\2019.0729.1%20-%20Project%20-%20Quantum%20Algorithms\Shor&#39;s_algorithm.svg" alt="" /><figcaption>Shor’s_algorithm</figcaption>
+</figure>
+<Center>
+Shor’s Algorithm Chart (ref 7)
+</Center>
+<p>Shor’s algorithms also used the superposition characteristic of quantum to realize the parallel computation of all qubits. Also, it is noteworthy that Shor’s algorithms itself is not a quantum algorithms, it also have a classical version. It provided us a method of factoring integers through ‘educated guess’, although we knew a little about prime number and we should guess, Shor’s algorithms basically told us how to guess more accurately each time. Eventually, Shor’s algorithm on qubits used a quantum discrete <strong>Fourier transform</strong>, before we observe all the qubits. As a result, Shor’s algorithm have a polynomial complexity (<em>O(n<sup>a)<em>) instead of exponential complexity of classical computers (</em>O(a</sup>n)</em>), in large data condition, a polynomial complexity algorithm will behave much better than the exponential complexity one, no matter what the power it have.</p>
+<p>If the Shor’s algorithms really could factor big integers for us, it will means a lot - it means almost all of our encryption on the internet would became totally transparent. But, we have nothing to worry about yet, limited by technology, Shor’s algorithms only worked on little # of qubits now, we still have time to ameliorate our encryption method, maybe, through Quantum Encryption?</p>
+<p>(ref 4,7)</p>
+<h3 id="ref">Ref:</h3>
+<ol type="1">
+<li>http://www.mooreslaw.org/</li>
+<li>https://en.wikipedia.org/wiki/Moore%27s_law</li>
+<li>https://en.wikipedia.org/wiki/Qubit</li>
+<li>http://quantumalgorithmzoo.org/</li>
+<li>https://en.wikipedia.org/wiki/Grover%27s_algorithm</li>
+<li>https://brilliant.org/wiki/rsa-encryption/</li>
+<li>https://en.wikipedia.org/wiki/Shor’s_algorithm</li>
+</ol>
+</section>
+</article>
+
+<article>
+    <section calss="navigation">
+        <a href="\" id="prev_button"><input type="button" value="Prev"></a>
+        <a href="\" id="next_button"><input type="button" value="Next"></a>
+    </section>
+</article>
+
+<script type="text/javascript">
+    // Put Name of this blog HERE
+        const blog_name = 'Quantum_Algorithms_Intro'
+        const title = document.getElementById("title");
+        if(title.innerText===''){
+            title.innerText = blog_name.replaceAll('_',' ');
+        }
+        const prev_btn = document.getElementById("prev_button");
+        prev_btn.setAttribute('href', get_prev_blog_address(blog_name));
+        const next_btn = document.getElementById("next_button");
+        next_btn.setAttribute('href', get_next_blog_address(blog_name));
+    </script>
+   
+
+    
+<footer>
+    @2024, Built by <a href=".">Danny Ding</a>
+</footer>
+
+    
+</body>
+
+
+</html>

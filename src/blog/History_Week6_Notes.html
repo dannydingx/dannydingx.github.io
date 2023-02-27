@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="blogstyle.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@500&family=Oswald:wght@600&family=Tilt+Warp&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <script src="/src/bloglib.js"></script>
+</head>
+<body>
+    <header><h3 style="font-family: Montserrat, sans-serif; margin-top: 0px;"><a href=".." style="box-shadow: none;">
+        Notes on Cats, Dogs, and CSing
+    </a></h3></header>
+
+    <article>
+        <header>
+            <h1 id="title">
+                <!--Put Article names here (Or Will do automatically)-->
+            </h1>
+            <p style="margin-bottom:1rem;">Feb 27, 2023</p>
+        </header>
+
+        <section>
+            <!--Put html of the article HERE-->
+            <p>What is Camen Blacker’s Argument in thie sddigm</p>
+<p>Four type of spirits.</p>
+<ul>
+<li><ol type="1">
+<li>superior to human beings kami conncted to the naturla world but an elusive presence manifesting in different physical forms.</li>
+<li>Inferior to human beings : angry ghosts / witch animalsx</li>
+</ol></li>
+</ul>
+<p>Similar to Shang oracle bones, deities connected to harvest, illness, to areas of life beyond the control of human beings.</p>
+<p>Common immigration of a layered universe connected by a world tree or mountain. Inductive also of control contacts and migration.</p>
+<p>What kind of religion is <em>Shinto</em></p>
+<ul>
+<li><p>Polytheistic, dieties not represented exclusive in icon. different appearances and manifest in nature in sites that stand apart in some way and inspire: rocks, tall, ancient trees, islands, and associated with life and renewal</p></li>
+<li><p>A tradition defined by practices rather than texts: maintenance of shrines, seasonal festivals ( e.g. connect to rice agriculture, the New Year, ghost festival/Bon) food offering (whole and fresh) prayers</p></li>
+<li><p>Avoidance of pollution, insistence on purity</p></li>
+<li><p>The main beliefs of Shinto are the importance of purity, harmony respect of nature, family respect, and subordination of the individual before the group. There are many Shinto gods or spirits and these have shrines dedicated to them where people offer food money and prayers.</p></li>
+<li><p>Shinto is an optimistic faith, as human are thought to be fundamentally good, and evil is believed to be caused by evil spirits. Consequently, the purpose of most Shinto rituals is to keep away evil spirits by purification, prayers and offering to the kami.</p></li>
+</ul>
+</section>
+</article>
+
+<article>
+    <section calss="navigation">
+        <a href="\" id="prev_button"><input type="button" value="Prev"></a>
+        <a href="\" id="next_button"><input type="button" value="Next"></a>
+    </section>
+</article>
+
+<script type="text/javascript">
+    // Put Name of this blog HERE
+        const blog_name = 'History_Week6_Notes'
+        const title = document.getElementById("title");
+        if(title.innerText===''){
+            title.innerText = blog_name.replaceAll('_',' ');
+        }
+        const prev_btn = document.getElementById("prev_button");
+        prev_btn.setAttribute('href', get_prev_blog_address(blog_name));
+        const next_btn = document.getElementById("next_button");
+        next_btn.setAttribute('href', get_next_blog_address(blog_name));
+    </script>
+   
+
+    
+<footer>
+    @2024, Built by <a href=".">Danny Ding</a>
+</footer>
+
+    
+</body>
+
+
+</html>
